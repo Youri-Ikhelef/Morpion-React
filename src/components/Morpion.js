@@ -10,7 +10,7 @@ const Morpion = () => {
   const [player, setPlayer] = useState(1);
 
   const handleClickSquare = (row, column) => {
-    console.log("Clic sur case" + `${row}` + `${column}`);
+    console.log(`Clic sur case ${row} ${column}`);
     if (squares[row][column] !== 0) {
       return;
     }
