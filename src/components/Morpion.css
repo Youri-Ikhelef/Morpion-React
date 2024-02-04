@@ -1,0 +1,21 @@
+.morpion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.row {
+    display: flex;
+}
+
+.square {
+    width: 150px;
+    height: 150px;
+    border: 1px black solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2px;
+}
