@@ -1,5 +1,7 @@
 import "./App.css";
-import Morpion from "./components/Morpion";
+import Choix from "./components/Choix";
+import Morpion from "./components/morpion/Morpion";
+import { MorpionProvider } from "./components/morpion/MorpionContext";
 
 function App() {
   return (
@@ -8,8 +10,11 @@ function App() {
         <h1>Morpion</h1>
         <h2>Jeu de Morpion - TicTacToe local</h2>
       </header>
+      <Choix />
       <main className="App-main">
-        <Morpion />
+        <MorpionProvider>
+          <Morpion />
+        </MorpionProvider>
       </main>
     </div>
   );
