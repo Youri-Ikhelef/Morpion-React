@@ -2,21 +2,27 @@ import React from "react";
 import { useMorpionContext } from "./MorpionContext";
 
 const PlayerTurn = () => {
-  const { player, winner } = useMorpionContext();
+  const { player, winner, squares } = useMorpionContext();
 
-  if (!winner) {
+  if (winner) {
     return (
       <div>
         <p>
-          Tour du<span> joueur {player}</span>
+          Victoire du<span> joueur {winner}</span>
         </p>
+      </div>
+    );
+  } else if (!winner && squares.flat().every((value) => value !== 0)) {
+    return (
+      <div>
+        <p>Match nul</p>
       </div>
     );
   } else {
     return (
       <div>
         <p>
-          Victoire du<span> joueur {winner}</span>
+          Tour du<span> joueur {player}</span>
         </p>
       </div>
     );

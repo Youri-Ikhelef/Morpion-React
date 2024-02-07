@@ -9,16 +9,19 @@ export const useMorpionContext = () => {
 };
 
 export const MorpionProvider = ({ children }) => {
+  //Valeurs initiales des états
   const initialSquares = Array(3)
     .fill(null)
     .map(() => Array(3).fill(0));
   const initialPlayer = 1;
   const initialWinner = null;
+  const initialCpu = undefined;
 
   const [squares, setSquares] = useState(initialSquares);
   const [player, setPlayer] = useState(initialPlayer);
   const [score, setScore] = useState({ player1: 0, player2: 0 });
   const [winner, setWinner] = useState(initialWinner);
+  const [cpu, setCpu] = useState(initialCpu);
 
   const handleClickSquare = (row, column) => {
     console.log(`Clic sur case ${row} ${column}`);
@@ -26,13 +29,11 @@ export const MorpionProvider = ({ children }) => {
     if (squares[row][column] !== 0 || winner) {
       return;
     }
-
     //Mis à jour de la valeur de la case en fonction du joueur
     const newSquare = [...squares];
     newSquare[row][column] = player;
     //Mis à jour de l'état du tableau
     setSquares(newSquare);
-
     //Mis à jour de l'état du winner selon les valeurs de squares
     const newWinner = winCondition(newSquare);
     if (newWinner) {
@@ -44,13 +45,18 @@ export const MorpionProvider = ({ children }) => {
           prevScore[newWinner === 1 ? "player1" : "player2"] + 1,
       }));
     }
-
     //Changer de joueur pour le tour suivant
     setPlayer(player === 1 ? 2 : 1);
   };
 
+  const handleClickChoix = () => {
+    const tempCpu = true;
+    setCpu(tempCpu);
+  };
+
+  //Logique vs CPU
   const cpuPlayer2Move = () => {
-    if (player === 2 && !winner) {
+    if (cpu === true && player === 2 && !winner) {
       const emptySquares = getEmptySquares(squares);
       if (emptySquares.length > 0) {
         const randomIndex = Math.floor(Math.random() * emptySquares.length);
@@ -63,15 +69,17 @@ export const MorpionProvider = ({ children }) => {
 
   useEffect(() => {
     cpuPlayer2Move();
+    //eslint-disable-next-line
   }, [player]);
 
-  //permet de reinitialiser les valeurs appelé dans le ResetButton
+  //Permet de reinitialiser les valeurs appelé dans le ResetButton
   const resetGame = () => {
     setSquares(initialSquares);
     setPlayer(initialPlayer);
     setWinner(initialWinner);
   };
 
+  //Valeurs exportable par le Provider
   const value = {
     squares,
     player,
@@ -79,6 +87,7 @@ export const MorpionProvider = ({ children }) => {
     handleClickSquare,
     winner,
     resetGame,
+    handleClickChoix,
   };
 
   return (
@@ -87,7 +96,7 @@ export const MorpionProvider = ({ children }) => {
 };
 
 /**
- *
+ * Règles du morpion permettant de retourner les conditions de victoire/egalité
  * @param {*} squares
  * @returns
  */
@@ -130,6 +139,7 @@ export const winCondition = (squares) => {
   return 0;
 };
 
+// Fonction qui récupère les valeurs des cases vides pour le cpu
 export const getEmptySquares = (squares) => {
   const emptySquares = [];
   for (let i = 0; i < squares.length; i++) {

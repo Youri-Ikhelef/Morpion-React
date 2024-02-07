@@ -10,9 +10,9 @@ function App() {
         <h1>Morpion</h1>
         <h2>Jeu de Morpion - TicTacToe local</h2>
       </header>
-      <Choix />
       <main className="App-main">
         <MorpionProvider>
+          <Choix />
           <Morpion />
         </MorpionProvider>
       </main>
