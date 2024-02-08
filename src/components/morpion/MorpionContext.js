@@ -16,10 +16,11 @@ export const MorpionProvider = ({ children }) => {
   const initialPlayer = 1;
   const initialWinner = null;
   const initialCpu = undefined;
+  const initialScore = { player1: 0, player2: 0 };
 
   const [squares, setSquares] = useState(initialSquares);
   const [player, setPlayer] = useState(initialPlayer);
-  const [score, setScore] = useState({ player1: 0, player2: 0 });
+  const [score, setScore] = useState(initialScore);
   const [winner, setWinner] = useState(initialWinner);
   const [cpu, setCpu] = useState(initialCpu);
 
@@ -49,9 +50,19 @@ export const MorpionProvider = ({ children }) => {
     setPlayer(player === 1 ? 2 : 1);
   };
 
-  const handleClickChoix = () => {
-    const tempCpu = true;
+  const handleClickChoix = (value) => {
+    const tempCpu = value;
     setCpu(tempCpu);
+  };
+
+  const handleClickBack = () => {
+    const tempBackCpu = undefined;
+
+    setCpu(tempBackCpu);
+    setSquares(initialSquares);
+    setPlayer(initialPlayer);
+    setWinner(initialWinner);
+    setScore(initialScore);
   };
 
   //Logique vs CPU
@@ -88,6 +99,8 @@ export const MorpionProvider = ({ children }) => {
     winner,
     resetGame,
     handleClickChoix,
+    cpu,
+    handleClickBack,
   };
 
   return (
