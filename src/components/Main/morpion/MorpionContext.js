@@ -1,5 +1,3 @@
-//inactif
-
 import { createContext, useContext, useEffect, useState } from "react";
 
 const MorpionContext = createContext();
@@ -8,7 +6,7 @@ export const useMorpionContext = () => {
   return useContext(MorpionContext);
 };
 
-export const MorpionProvider = ({ children }) => {
+export const MorpionProvider = ({ children, mainRef }) => {
   //Valeurs initiales des états
   const initialSquares = Array(3)
     .fill(null)
@@ -24,12 +22,11 @@ export const MorpionProvider = ({ children }) => {
   const [winner, setWinner] = useState(initialWinner);
   const [cpu, setCpu] = useState(initialCpu);
 
-  const handleClickSquare = (row, column) => {
-    console.log(`Clic sur case ${row} ${column}`);
+  const handleClickSquare = (row, column, cpuPlayer2Move) => {
     //Empeche de cocher une case déja coché ou si il y a un winner
-    if (squares[row][column] !== 0 || winner) {
-      return;
-    }
+    if (squares[row][column] !== 0 || winner) return;
+    if (!cpuPlayer2Move && player === 2 && cpu) return;
+
     //Mis à jour de la valeur de la case en fonction du joueur
     const newSquare = [...squares];
     newSquare[row][column] = player;
@@ -50,9 +47,10 @@ export const MorpionProvider = ({ children }) => {
     setPlayer(player === 1 ? 2 : 1);
   };
 
-  const handleClickChoix = (value) => {
+  const handleClickSelectMode = (value) => {
     const tempCpu = value;
     setCpu(tempCpu);
+    mainRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const handleClickBack = () => {
@@ -73,7 +71,9 @@ export const MorpionProvider = ({ children }) => {
         const randomIndex = Math.floor(Math.random() * emptySquares.length);
         const { row, column } = emptySquares[randomIndex];
 
-        handleClickSquare(row, column);
+        setTimeout(() => {
+          handleClickSquare(row, column, true);
+        }, 1000);
       }
     }
   };
@@ -98,7 +98,7 @@ export const MorpionProvider = ({ children }) => {
     handleClickSquare,
     winner,
     resetGame,
-    handleClickChoix,
+    handleClickSelectMode,
     cpu,
     handleClickBack,
   };

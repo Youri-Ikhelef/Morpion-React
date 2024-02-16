@@ -15,11 +15,11 @@ const Morpion = () => {
 
   return (
     <div className={style.morpion}>
+      <BackButton />
       <Score />
       <PlayerTurn />
       <Grid />
       <ResetButton />
-      <BackButton />
     </div>
   );
 };
