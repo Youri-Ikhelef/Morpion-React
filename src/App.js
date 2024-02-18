@@ -1,16 +1,28 @@
 import "./App.css";
-import Morpion from "./components/Morpion";
+import SelectMode from "./components/Main/SelectMode";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Morpion from "./components/Main/morpion/Morpion";
+import { MorpionProvider } from "./components/Main/morpion/MorpionContext";
+import { useRef } from "react";
 
 function App() {
+  const mainRef = useRef();
+
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Morpion</h1>
-        <h2>Jeu de Morpion - TicTacToe local</h2>
+        <Header />
       </header>
-      <main className="App-main">
-        <Morpion />
+      <main className="App-main" ref={mainRef}>
+        <MorpionProvider mainRef={mainRef}>
+          <SelectMode />
+          <Morpion />
+        </MorpionProvider>
       </main>
+      <footer className="App-footer">
+        <Footer />
+      </footer>
     </div>
   );
 }
