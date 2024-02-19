@@ -50,7 +50,7 @@ export const MorpionProvider = ({ children, mainRef }) => {
   const handleClickSelectMode = (value) => {
     const tempCpu = value;
     setCpu(tempCpu);
-    mainRef.current.scrollIntoView({ behavior: "smooth" });
+    scrollToMain(mainRef);
   };
 
   const handleClickBack = () => {
@@ -61,6 +61,7 @@ export const MorpionProvider = ({ children, mainRef }) => {
     setPlayer(initialPlayer);
     setWinner(initialWinner);
     setScore(initialScore);
+    scrollToMain(mainRef);
   };
 
   //Logique vs CPU
@@ -88,6 +89,7 @@ export const MorpionProvider = ({ children, mainRef }) => {
     setSquares(initialSquares);
     setPlayer(initialPlayer);
     setWinner(initialWinner);
+    scrollToMain(mainRef);
   };
 
   //Valeurs exportable par le Provider
@@ -163,4 +165,8 @@ export const getEmptySquares = (squares) => {
     }
   }
   return emptySquares;
+};
+
+export const scrollToMain = (mainRef) => {
+  mainRef.current.scrollIntoView({ behavior: "smooth" });
 };

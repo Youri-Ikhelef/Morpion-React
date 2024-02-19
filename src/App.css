@@ -14,8 +14,9 @@ h1 {
   font-family: 'Russo One', sans-serif;
   font-size: 4em;
   color: white;
-  border: solid 5px;
+  border: solid 3px;
   border-color: var(--color-primary);
+  background: linear-gradient(45deg, rgba(90,98,102,1) 0%, rgba(44,49,52,1) 52%, rgba(44,49,52,1) 100%); 
   border-radius: 5px;
   padding: 10px;
 }
@@ -85,4 +86,3 @@ h2 {
   color: white;
   border: none;
 }
-
