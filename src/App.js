@@ -3,7 +3,7 @@ import SelectMode from "./components/Main/SelectMode";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Morpion from "./components/Main/morpion/Morpion";
-import { MorpionProvider } from "./components/Main/morpion/MorpionContext";
+import { MorpionProvider } from "./store/MorpionProvider";
 import { useRef } from "react";
 
 function App() {
@@ -28,3 +28,7 @@ function App() {
 }
 
 export default App;
+
+export const scrollToMain = (mainRef) => {
+  mainRef.current.scrollIntoView({ behavior: "smooth" });
+};

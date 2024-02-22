@@ -1,5 +1,5 @@
 import React from "react";
-import { useMorpionContext } from "./MorpionContext";
+import { useMorpionContext } from "../../../store/MorpionContext";
 import { IoReturnUpBack } from "react-icons/io5";
 import "./BackButton.css";
 
