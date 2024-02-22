@@ -3,13 +3,13 @@ import ResetButton from "./ResetButton";
 import PlayerTurn from "./PlayerTurn";
 import Score from "./Score";
 import Grid from "./Grid";
-import { useMorpionContext } from "./MorpionContext";
+import { useMorpionContext } from "../../../store/MorpionContext";
 import BackButton from "./BackButton";
 
 const Morpion = () => {
-  const { cpu } = useMorpionContext();
+  const { state } = useMorpionContext();
 
-  if (cpu === undefined) {
+  if (state.cpu === undefined) {
     return null;
   }
 

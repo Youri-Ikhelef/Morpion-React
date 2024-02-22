@@ -1,11 +1,11 @@
-import { useMorpionContext } from "./MorpionContext";
+import { useMorpionContext } from "../../../store/MorpionContext";
 
 const Grid = () => {
-  const { squares, handleClickSquare } = useMorpionContext();
+  const { state, handleClickSquare } = useMorpionContext();
 
   return (
     <div>
-      {squares.map((row, rowIndex) => (
+      {state.squares.map((row, rowIndex) => (
         <div key={rowIndex} className="row">
           {row.map((square, colIndex) => {
             const playerStyle =

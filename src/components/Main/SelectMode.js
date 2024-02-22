@@ -1,11 +1,11 @@
 import "./SelectMode.css";
 import React from "react";
-import { useMorpionContext } from "./morpion/MorpionContext";
+import { useMorpionContext } from "../../store/MorpionContext";
 
 const SelectMode = () => {
-  const { handleClickSelectMode, cpu } = useMorpionContext();
+  const { handleClickSelectMode, state } = useMorpionContext();
 
-  if (cpu !== undefined) {
+  if (state.cpu !== undefined) {
     return null;
   }
 
