@@ -18,7 +18,7 @@ const PlayerTurn = () => {
     return (
       <div className="zone_turn_winner russo">
         <p>
-          Victoire du<span className={playerStyle}> joueur {state.winner}</span>
+          Victoire du<span className={playerStyle}> Joueur {state.winner}</span>
         </p>
       </div>
     );
@@ -35,7 +35,7 @@ const PlayerTurn = () => {
     return (
       <div className="zone_turn_winner russo">
         <p>
-          Tour du<span className={playerStyle}> joueur {state.player}</span>
+          Tour du<span className={playerStyle}> Joueur {state.player}</span>
         </p>
       </div>
     );
