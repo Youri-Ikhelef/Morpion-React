@@ -24,4 +24,4 @@ Placez-vous dans le dossier du projet, exécutez la commande suivante pour insta
 
 ### Démarrer l'application
 
-Une fois les dépendances installées, vous pouvez démarrer l'application à l'aide de la commande suivante : `pnpm start`
+Une fois les dépendances installées, vous pouvez démarrer l'application avec la commande : `pnpm start`
