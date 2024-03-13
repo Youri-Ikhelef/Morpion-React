@@ -15,10 +15,10 @@ export const initialStates = {
 };
 
 /**
- * n,iubih gy yhiuohiuniunopi
- * @param {*} state nuhbuhhjk
- * @param {*} action ,iunjoi
- * @returns nbjhbjh
+ * Reducer permettant d'organiser les principales fonctionnalités du morpion et des composants boutons associés
+ * @param {*} state
+ * @param {*} action
+ * @returns Retourne les changements d'états selon les actions distribué
  */
 export const morpionReducer = (state, action) => {
   switch (action.type) {
