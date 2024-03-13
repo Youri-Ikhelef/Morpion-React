@@ -57,6 +57,7 @@ export const getEmptySquares = (squares) => {
 
 //Logique vs CPU
 export const cpuPlayer2Move = (squares) => {
+  console.log(squares);
   const emptySquares = getEmptySquares(squares);
   if (emptySquares.length > 0) {
     const randomIndex = Math.floor(Math.random() * emptySquares.length);

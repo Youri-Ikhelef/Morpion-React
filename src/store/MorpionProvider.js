@@ -9,10 +9,13 @@ export const MorpionProvider = ({ children, mainRef }) => {
 
   useEffect(() => {
     if (state.cpu === true && state.player === 2 && !state.winner) {
-      const { row, column } = cpuPlayer2Move(state.squares);
-      setTimeout(() => {
-        handleClickSquare(row, column, true);
-      }, 1000);
+      const cpuMove = cpuPlayer2Move(state.squares);
+      if (cpuMove) {
+        const { row, column } = cpuMove;
+        setTimeout(() => {
+          handleClickSquare(row, column, true);
+        }, 1000);
+      }
     }
     //eslint-disable-next-line
   }, [state.player]);
@@ -25,7 +28,7 @@ export const MorpionProvider = ({ children, mainRef }) => {
 
     dispatch({
       type: "CLICK_SQUARE",
-      payload: { row, column, cpuPlayer2Move },
+      payload: { row, column },
     });
   };
 
